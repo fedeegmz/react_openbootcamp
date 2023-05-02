@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
-import ContactDetail from './components/container/contact_detail';
-import { Contact } from './models/contact.class';
+import ContactDetail from './components/challenge1/contact_detail';
+import { Contact } from './models/challenge1/contact.class';
 
 function App() {
   const defaultContact = new Contact("John", "Doe", "johndoe@email.com", true);
