@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {Task} from "../../models/task.class";
 
 const TaskComponent = ({ task }) => {
+
+	useEffect(() => {
+		console.log("Tarea Completada");
+		return () => {
+			console.log(`Desmontaje del componente: ${task.name}`);
+		};
+	}, []);
+
 	return (
 		<div>
 			<h2>
