@@ -25,6 +25,7 @@ const TaskListComponent = () => {
 		};
 	}, [tasks]);
 
+	
 	function completeTask(task) {
 		console.log(`Complete this task: ${task}`);
 		const index = tasks.indexOf(task);
