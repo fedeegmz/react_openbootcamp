@@ -7,7 +7,8 @@ import TaskListComponent from './components/container/task_list';
 // import Ejemplo1 from './hooks/ejemplo1';
 // import Ejemplo2 from './hooks/ejemplo2';
 // import MiComponenteConContexto from './hooks/ejemplo3';
-import Father from './components/container/father';
+// import Father from './components/container/father';
+// import OptionalRender from './components/pure/optionalRender';
 
 function App() {
   // const defaultContact = new Contact("John", "Doe", "johndoe@email.com", true);
@@ -29,6 +30,9 @@ function App() {
       {/* </header> */}
 
       {/* <Father></Father> */}
+
+      {/* <OptionalRender></OptionalRender> */}
+      
       <TaskListComponent></TaskListComponent>
     </div>
   );

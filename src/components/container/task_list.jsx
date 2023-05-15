@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
-import TaskComponent from "../pure/task"
 import {Task} from "../../models/task.class";
-import { LEVELS } from "../models/levels.enum";
+import { LEVELS } from "../../models/levels.enum";
+import TaskTable from '../pure/taskTable';
 import TaskForm from '../pure/forms/taskForm';
 
 
@@ -18,7 +18,8 @@ const TaskListComponent = () => {
 
 	useEffect(() => {
 		console.log("Modificación de tareas");
-		setLoading(false);
+
+		setTimeout(() => setLoading(false), 2000);
 		
 		return () => {
 			console.log("Desmontaje del componente");
@@ -46,7 +47,6 @@ const TaskListComponent = () => {
 
 	function addTask(task) {
 		console.log(`Add this task: ${task}`);
-		const index = tasks.indexOf(task);
 		const tempTasks = [...tasks];
 		tempTasks.push(task);
 
@@ -61,40 +61,50 @@ const TaskListComponent = () => {
 						<h5>Your Tasks:</h5>
 					</div>
 
-					<div className='card-body' data-mdb-perfect-scrollbar='true' style={ {position: 'relative', height: '400px'} }>
-						<table>
-							<thead>
-								<tr>
-									<th scope='col'>Title</th>
-									<th scope='col'>Description</th>
-									<th scope='col'>Priority</th>
-									<th scope='col'>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								{ tasks.map((task, index) => {
-									return (
-										<TaskComponent
-											key={index}
-											task={task}
-											complete={completeTask}
-											remove={removeTask}
-										></TaskComponent>
-									)
-								}) }
-							</tbody>
-						</table>
+					<div
+						className='card-body'
+						data-mdb-perfect-scrollbar='true'
+						style={ {position: 'relative', height: '400px'} }
+					>
+						{/* Render tasks */}
+						{ loading ?
+							(
+								/* TODO: Add Loading Spinner */
+								<p style={{color: 'gray', fontSize: '30px', fontWeight: 'bold'}}>
+									Loading tasks...
+								</p>
+							)
+							:
+							tasks.length === 0 ?
+								(
+									<div>
+										<h3>There are no tasks to show</h3>
+										<h4>Please, create one</h4>
+									</div>
+								)
+								:
+								(
+									<TaskTable
+										tasks={tasks}
+										complete={completeTask}
+										remove={removeTask}
+									></TaskTable>
+								)
+						}
 					</div>
 				</div>
 			</div>
 
-			<TaskForm add={addTask}></TaskForm>
+			<TaskForm
+			nTasks={tasks.length}
+				add={addTask}
+			></TaskForm>
 		</div>
 	);
 };
 
-TaskListComponent.propTypes = {
+// TaskListComponent.propTypes = {
 		
-};
+// };
 
 export default TaskListComponent;

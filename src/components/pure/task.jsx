@@ -1,7 +1,14 @@
+// react
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+
+// models
 import {Task} from "../../models/task.class";
 import { LEVELS } from '../../models/levels.enum';
+
+// styles
+import '../../styles/task.scss';
+
 
 const TaskComponent = ({ task, complete, remove }) => {
 
@@ -22,7 +29,7 @@ const TaskComponent = ({ task, complete, remove }) => {
 			case LEVELS.NORMAL:
 				return(
 					<h6 className='mb-0'>
-						<span className='badge bd-primary'>
+						<span className='badge bg-primary'>
 							{ task.level }
 						</span>
 					</h6>
@@ -30,7 +37,7 @@ const TaskComponent = ({ task, complete, remove }) => {
 			case LEVELS.URGENT:
 				return(
 					<h6 className='mb-0'>
-						<span className='badge bd-warning'>
+						<span className='badge bg-warning'>
 							{ task.level }
 						</span>
 					</h6>
@@ -38,7 +45,7 @@ const TaskComponent = ({ task, complete, remove }) => {
 			case LEVELS.BLOCKING:
 				return(
 					<h6 className='mb-0'>
-						<span className='badge bd-danger'>
+						<span className='badge bg-danger'>
 							{ task.level }
 						</span>
 					</h6>
@@ -64,7 +71,7 @@ const TaskComponent = ({ task, complete, remove }) => {
 		} else {
 			return(
 				<i
-					className='bi-toggle-of task-action'
+					className='bi-toggle-off task-action'
 					style={{color: 'grey'}}
 					onClick={() => complete(task)}
 				></i>
@@ -74,7 +81,7 @@ const TaskComponent = ({ task, complete, remove }) => {
 
 	
 	return (
-		<tr className='fw-normal'>
+		<tr className={task.completed ? 'fw-normal task-completed' : 'fw-normal task-pending'}>
 			<th>
 				<span className='ms-2'>{ task.name }</span>
 			</th>

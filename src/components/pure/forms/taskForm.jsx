@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { LEVELS } from '../../../models/levels.enum';
 import { Task } from '../../../models/task.class';
 
-const TaskForm = ({ add }) => {
+const TaskForm = ({ nTasks, add }) => {
 
     const nameRef = useRef('');
     const descriptionRef = useRef('');
@@ -43,24 +43,25 @@ const TaskForm = ({ add }) => {
                     placeholder='Task description'
                     required   
                 />
-                <label
+                {/* <label
                     htmlFor='selectLevel'
                     className='sr-only'
                 >
                     Priority
-                </label>
+                </label> */}
                 <select
+                    className='form-control form-control-lg'
                     ref={levelRef}
                     id='selectLevel'
                     defaultValue={LEVELS.NORMAL}
                 >
-                    <option value={LEVELS.NORMAL}>
+                    <option value={LEVELS.NORMAL} style={{color: 'blue', backgroundColor: 'gray', fontWeight: 'bold'}}>
                         Normal
                     </option>
-                    <option value={LEVELS.URGENT}>
+                    <option value={LEVELS.URGENT} style={{color: 'yellow', backgroundColor: 'gray', fontWeight: 'bold'}}>
                         Urgent
                     </option>
-                    <option value={LEVELS.BLOCKING}>
+                    <option value={LEVELS.BLOCKING} style={{color: 'tomato', backgroundColor: 'gray', fontWeight: 'bold'}}>
                         Blocking
                     </option>
                 </select>
@@ -69,7 +70,7 @@ const TaskForm = ({ add }) => {
                     type='submit'
                     className='btn btn-success btn-lg ms-2'
                 >
-                    Add
+                    {nTasks === 0 ? "Create Task" : "Add New Task"}
                 </button>
             </div>
         </form>
@@ -78,6 +79,7 @@ const TaskForm = ({ add }) => {
 
 TaskForm.propTypes = {
     add: PropTypes.func.isRequired,
+    nTasks: PropTypes.number.isRequired,
 }
 
 export default TaskForm;
